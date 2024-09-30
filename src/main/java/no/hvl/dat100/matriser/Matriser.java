@@ -3,13 +3,41 @@ package no.hvl.dat100.matriser;
 public class Matriser {
 
 	public static void main(String[] args) {
-		int[][] matrise = {
+		int[][] a = {
 				{1, 2, 3},
 				{4, 5, 6},
 				{7, 8, 9}
 		};
 
-		System.out.println(tilStreng(multipliser(matrise, matrise)));
+		int[][] matrise2 = {
+				{2, 4, 6},
+				{8, 10, 12},
+				{14, 16, 18}
+		};
+
+		int[] b0 = {10,11,12};
+		int[] b1 = {13,14,15};
+		int[] b2 = {16,17,18};
+
+		int[][] b = new int[3][];
+
+		b[0] = b0;
+		b[1] = b1;
+		b[2] = b2;
+
+		int[] c0 = {1,2,3};
+		int[] c1 = {4,5,6};
+		int[] c2 = {7,8,9};
+		int[] c3 = {10,11,12};
+
+		int[][] c = new int[4][];
+
+		c[0] = c0;
+		c[1] = c1;
+		c[2] = c2;
+		c[3] = c3;
+
+		System.out.println(tilStreng(multipliser(c, a)));
 	}
 
 	// a)
@@ -80,15 +108,14 @@ public class Matriser {
 
 	// f)
 	public static int[][] multipliser(int[][] a, int[][] b) {
-		int[][] multiplisert = new int[a[0].length][b.length];
+		int[][] multiplisert = new int[a.length][b[0].length];
 
-		for (int i = 0; i < multiplisert.length; i++) {
-			for (int j = 0; j < multiplisert[0].length; j++) {
-				multiplisert[i][j] = 0;
-				for (int k = 0; k < a[i].length; k++) {
-					for (int l = 0; l < b.length; l++) {
-						multiplisert[i][j] += a[k][l] * b[l][k];
-					}
+		int lengde = Math.min(a.length, b.length);
+
+		for (int i = 0; i < a.length; i++) {
+			for (int j = 0; j < lengde; j++) {
+				for (int k = 0; k < b[0].length; k++) {
+					multiplisert[i][j] += a[i][k] * b[k][j];
 				}
 			}
 		}
